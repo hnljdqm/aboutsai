@@ -5,10 +5,10 @@ spring:
   main: 
     banner-mode: "off"
 #  jsp 支持
-  mvc: 
-    view: 
-      prefix: /WEB-INF/pages/
-      suffix: .jsp
+#  mvc: 
+#    view: 
+#      prefix: /WEB-INF/pages/
+#      suffix: .jsp
 #    static-path-pattern: /static/**
 #  关闭默认模板引擎
   thymeleaf:
@@ -36,7 +36,7 @@ server:
 #mybatis:
 ## 自动分页插件pageHelper需要设置该属性
 #  typeAliasesPackage: com.isea533.ssm.model
-#  mapperLocations: classpath*:com/elementspeed/**/mapper/**/*.xml
+#  mapperLocations: classpath*:com/aboutsai/**/mapper/**/*.xml
 #  configLocation: classpath:config/mybatis/MyBatis-Configuration.xml
 
 # 显示SQL

@@ -19,7 +19,7 @@
 		<!--滚动策略 -->
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> 
 		<!--路径 -->
-			<fileNamePattern>/usr/srm/logs/demo_info.%d.log</fileNamePattern>
+			<fileNamePattern>/usr/blog/logs/blog_info.%d.log</fileNamePattern>
 		</rollingPolicy>
 	</appender>
 	
@@ -33,7 +33,7 @@
 		<!--滚动策略 -->
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> 
 		<!--路径 -->
-			<fileNamePattern>/usr/srm/logs/demo_error.%d.log</fileNamePattern>
+			<fileNamePattern>/usr/blog/logs/blog_error.%d.log</fileNamePattern>
 		</rollingPolicy>
 	</appender>
 	
