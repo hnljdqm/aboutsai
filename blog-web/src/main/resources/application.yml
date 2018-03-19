@@ -4,46 +4,37 @@ spring:
     active: dev
   main: 
     banner-mode: "off"
-#  jsp 支持
-#  mvc: 
-#    view: 
-#      prefix: /WEB-INF/pages/
-#      suffix: .jsp
-#    static-path-pattern: /static/**
 #  关闭默认模板引擎
   thymeleaf:
     cache: false
     enabled: false
-#  Freemarker 配置
-#  freemarker:
-#    template-loader-path: classpath:/templates/
-#    cache: false
-#    charset: UTF-8
-#    check-template-location: true
-#    content-type: text/html
-#    expose-request-attributes: true
-#    expose-session-attributes: true
-#    request-context-attribute: request
-#    suffix: .ftl
-
 # 访问端口和上下文路径配置，默认port为80，context-path为空
 server:
   port: 80
   servlet:
     context-path: /
     
-# mapperLocations指的路径是src/main/resources
-#mybatis:
-## 自动分页插件pageHelper需要设置该属性
-#  typeAliasesPackage: com.isea533.ssm.model
-#  mapperLocations: classpath*:com/aboutsai/**/mapper/**/*.xml
-#  configLocation: classpath:config/mybatis/MyBatis-Configuration.xml
+mybatis:
+#entity扫描的包名
+  typeAliasesPackage: com.aboutsai.blog.entity
+#Mapper.xml所在的位置,mapperLocations指的路径是src/main/resources
+  mapperLocations: classpath*:/mybatis/mapper/**/*.xml
 
-# 显示SQL
+#pagehelper分页插件配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: countSql
+
+#日志配置
 logging:
+  # 显示SQL
   level:
     com:
-      aboutsai: debug
-  
-
-
+      aboutsai: debug  
+    org:
+      springframework:
+        web: info
+        transaction: info
+      mybatis: info

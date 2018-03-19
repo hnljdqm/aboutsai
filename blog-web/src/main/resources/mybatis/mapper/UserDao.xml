@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aboutsai.blog.dao.UserDao">
+	<resultMap id="userMapper" type="com.aboutsai.blog.entity.User">
+	    <id column="ID" property="id" />
+	    <result column="NAME" property="name" />
+	    <result column="EMAIL" property="email" />
+	</resultMap>
+
+	<sql id="Base_Column_List" >
+		ID, NAME, EMAIL
+	</sql>
+
+  	<select id="findById" parameterType="string" resultMap="userMapper">
+		select
+		<include refid="Base_Column_List" />
+		from SYS_USERS
+		where ID = #{id,jdbcType=VARCHAR}
+  	</select>
+  	
+  	<select id="query" parameterType="com.aboutsai.blog.entity.User" resultMap="userMapper">
+  		select
+		<include refid="Base_Column_List" />
+		from SYS_USERS
+		<where>
+			<if test="name != null and name != ''">
+				and NAME like  '%' || #{name} || '%'
+			</if>
+			<if test="email != null and email != ''">
+				and upper(EMAIL) like  '%' || upper(#{email}) || '%'
+			</if>
+		</where>
+  	</select>
+  	
+  	<insert id="insert" parameterType="com.aboutsai.blog.entity.User">
+  		insert into SYS_USERS(ID, NAME, EMAIL) 
+  		values (
+  			#{id, jdbcType=VARCHAR}, 
+  			#{name, jdbcType=VARCHAR}, 
+  			#{email, jdbcType=VARCHAR}
+  		)
+  	</insert>
+
+</mapper>
