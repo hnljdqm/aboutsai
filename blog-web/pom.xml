@@ -14,6 +14,12 @@
 	<packaging>jar</packaging>
 
 	<dependencies>
+		<!-- blog-core -->
+		<dependency>
+			<groupId>com.aboutsai</groupId>
+			<artifactId>blog-core</artifactId>
+			<version>${aboutsai.blog.version}</version>
+		</dependency>
 		<!-- spring-boot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

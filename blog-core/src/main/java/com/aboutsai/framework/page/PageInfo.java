@@ -1,4 +1,4 @@
-package com.aboutsai.blog.page;
+package com.aboutsai.framework.page;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;

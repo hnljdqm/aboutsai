@@ -1,7 +1,7 @@
 package com.aboutsai.blog.service;
 
 import com.aboutsai.blog.entity.User;
-import com.aboutsai.blog.page.PageInfo;
+import com.aboutsai.framework.page.PageInfo;
 
 public interface UserService {
 	/**

@@ -7,9 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
 import com.aboutsai.blog.entity.User;
-import com.aboutsai.blog.page.PageInfo;
 import com.aboutsai.blog.service.UserService;
+import com.aboutsai.framework.page.PageInfo;
 import com.alibaba.fastjson.JSON;
 
 /**
