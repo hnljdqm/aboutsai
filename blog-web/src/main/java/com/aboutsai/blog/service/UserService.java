@@ -20,10 +20,10 @@ public interface UserService {
 	/**
 	 * 分页查询用户列表
 	 * @param user
-	 * @param pageNo
+	 * @param pageNum
 	 * @param pageSize
 	 * @return
 	 */
-	PageInfo<User> query(User user, int pageNo, int pageSize);
+	PageInfo<User> query(User user, int pageNum, int pageSize);
 	
 }

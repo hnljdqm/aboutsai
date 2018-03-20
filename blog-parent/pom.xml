@@ -20,6 +20,7 @@
 		<aboutsai.blog.version>1.0</aboutsai.blog.version>
 		<alibaba.druid.version>1.1.0</alibaba.druid.version>
 		<alibaba.fastjson.version>1.2.46</alibaba.fastjson.version>
+		<mybatis-ehcache.version>1.1.0</mybatis-ehcache.version>
 	</properties>
 
 	<prerequisites>

@@ -25,8 +25,8 @@ public class UserController {
 	@RequestMapping(value = "/query", method = RequestMethod.GET)
 	@ResponseBody
 	public PageInfo<User> query(User user, 
-			@RequestParam("pageNo") int pageNo, 
+			@RequestParam("pageNum") int pageNum, 
 			@RequestParam("pageSize") int pageSize) {
-		return userService.query(user, pageNo, pageSize);
+		return userService.query(user, pageNum, pageSize);
 	}
 }

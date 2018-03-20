@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aboutsai.blog.dao.ArticleInfoDao">
+	<cache type="org.mybatis.caches.ehcache.EhcacheCache">
+		<property name="timeToIdleSeconds" value="86400" />
+		<property name="timeToLiveSeconds" value="86400" />
+		<property name="eternal" value="false" />
+		<!-- 同ehcache参数maxElementsInMemory -->
+		<property name="maxEntriesLocalHeap" value="1000" />
+		<!-- 同ehcache参数maxElementsOnDisk -->
+		<property name="maxEntriesLocalDisk" value="10000000" />
+		<property name="memoryStoreEvictionPolicy" value="LRU" />
+	</cache>
+	
+	<resultMap id="articleInfoMapper" type="com.aboutsai.blog.entity.ArticleInfo">
+		<id column="ID" property="id"/>
+		<result column="ARTICLE_TYPE" property="articleType"/>
+		<result column="TITLE" property="title"/>
+		<result column="ARTICLE_LABEL" property="articleLabel"/>
+		<result column="CATALOG_ID" property="catalogId"/>
+		<result column="CATALOG_NAME" property="catalogName"/>
+		<result column="PUBLISH_STATUS" property="publishStatus"/>
+		<result column="PUBLISH_TIME" property="publishTime"/>
+		<result column="PUBLISH_USER_ID" property="publishUserId"/>
+		<result column="HITS" property="hits"/>
+		<result column="IS_RECOMMEND" property="isRecommend"/>
+		<result column="CREATE_USER_ID" property="createUserId"/>
+		<result column="CREATE_TIME" property="createTime"/>
+		<result column="LAST_MODIFY_USER_ID" property="lastModifyUserId"/>
+		<result column="LAST_MODIFY_TIME" property="lastModifyTime"/>
+		<result column="DELETE_FLAG" property="deleteFlag"/>
+	</resultMap>
+
+	<select id="getById" parameterType="string" resultMap="articleInfoMapper" useCache="true">
+		select *
+		from BLOG_ARTICLE_INFO 
+		where ID = #{id, jdbcType=VARCHAR}
+	</select>
+	
+	<insert id="insert" parameterType="com.aboutsai.blog.entity.ArticleInfo">
+		insert into BLOG_ARTICLE_INFO (
+			ID,ARTICLE_TYPE,TITLE,ARTICLE_LABEL,CATALOG_ID,CATALOG_NAME,PUBLISH_STATUS,PUBLISH_TIME,PUBLISH_USER_ID,HITS,IS_RECOMMEND,CREATE_USER_ID,CREATE_TIME,LAST_MODIFY_USER_ID,LAST_MODIFY_TIME,DELETE_FLAG
+		)
+		values
+		(
+			#{id,jdbcType=VARCHAR},#{articleType,jdbcType=INTEGER},#{title,jdbcType=VARCHAR},#{articleLabel,jdbcType=VARCHAR},#{catalogId,jdbcType=VARCHAR},#{catalogName,jdbcType=VARCHAR},#{publishStatus,jdbcType=INTEGER},#{publishTime,jdbcType=TIMESTAMP},#{publishUserId,jdbcType=VARCHAR},#{hits,jdbcType=INTEGER}, #{isRecommend, jdbcType=INTEGER}, #{createUserId,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP},#{lastModifyUserId,jdbcType=VARCHAR},#{lastModifyTime,jdbcType=TIMESTAMP},#{deleteFlag,jdbcType=INTEGER}
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.aboutsai.blog.entity.ArticleInfo">
+		update BLOG_ARTICLE_INFO set 
+			ARTICLE_TYPE = #{articleType, jdbcType=INTEGER},
+			TITLE = #{title, jdbcType=VARCHAR},
+			ARTICLE_LABEL = #{articleLabel, jdbcType=VARCHAR},
+			CATALOG_ID = #{catalogId, jdbcType=VARCHAR},
+			CATALOG_NAME = #{catalogName, jdbcType=VARCHAR},
+			PUBLISH_STATUS = #{publishStatus, jdbcType=INTEGER},
+			PUBLISH_TIME = #{publishTime, jdbcType=TIMESTAMP},
+			PUBLISH_USER_ID = #{publishUserId, jdbcType=VARCHAR},
+			HITS = #{hits, jdbcType=INTEGER},
+			IS_RECOMMEND = #{isRecommend, jdbcType=INTEGER},			
+			LAST_MODIFY_USER_ID = #{lastModifyUserId, jdbcType=VARCHAR},
+			LAST_MODIFY_TIME = #{lastModifyTime, jdbcType=TIMESTAMP},
+			DELETE_FLAG = #{deleteFlag, jdbcType=INTEGER}
+		where ID = #{id, jdbcType=VARCHAR}
+	</update>
+	
+	<select id="query" resultMap="articleInfoMapper" useCache="true">
+		select * 
+		from blog_article_info
+		where DELETE_FLAG = 0
+		order by publish_time desc 
+	</select>
+	
+	<select id="getMaxNewArticles" resultMap="articleInfoMapper">
+		select * 
+		from blog_article_info
+		where DELETE_FLAG = 0
+		order by publish_time desc 
+		limit 10
+	</select>
+	
+	<select id="getRecommendArticles" resultMap="articleInfoMapper">
+		select * 
+		from blog_article_info
+		where DELETE_FLAG = 0 and IS_RECOMMEND = 1
+		order by publish_time desc 
+		limit 10
+	</select>
+
+</mapper>

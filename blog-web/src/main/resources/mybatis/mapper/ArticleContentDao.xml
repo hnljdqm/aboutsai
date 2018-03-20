@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aboutsai.blog.dao.ArticleContentDao">
+	<resultMap id="articleContentMapper" type="com.aboutsai.blog.entity.ArticleContent">
+		<id column="ID" property="id"/>
+		<result column="ARTICLE_CONTENT" property="articleContent"/>
+		<result column="CREATE_USER_ID" property="createUserId"/>
+		<result column="CREATE_TIME" property="createTime"/>
+		<result column="LAST_MODIFY_USER_ID" property="lastModifyUserId"/>
+		<result column="LAST_MODIFY_TIME" property="lastModifyTime"/>
+		<result column="DELETE_FLAG" property="deleteFlag"/>
+	</resultMap>
+
+	<select id="getById" parameterType="string" resultMap="articleContentMapper">
+		select * from BLOG_ARTICLE_CONTENT where ID = #{id, jdbcType=VARCHAR}
+	</select>
+	
+	<insert id="insert" parameterType="com.aboutsai.blog.entity.ArticleContent">
+		insert into BLOG_ARTICLE_CONTENT (
+			ID,ARTICLE_CONTENT,CREATE_USER_ID,CREATE_TIME,LAST_MODIFY_USER_ID,LAST_MODIFY_TIME,DELETE_FLAG
+		)
+		values
+		(
+			#{id,jdbcType=VARCHAR},#{articleContent,jdbcType=VARCHAR},#{createUserId,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP},#{lastModifyUserId,jdbcType=VARCHAR},#{lastModifyTime,jdbcType=TIMESTAMP},#{deleteFlag,jdbcType=INTEGER}
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.aboutsai.blog.entity.ArticleContent">
+		update BLOG_ARTICLE_CONTENT set 			
+			ARTICLE_CONTENT = #{articleContent, jdbcType=VARCHAR},
+			LAST_MODIFY_USER_ID = #{lastModifyUserId, jdbcType=VARCHAR},
+			LAST_MODIFY_TIME = #{lastModifyTime, jdbcType=TIMESTAMP},
+			DELETE_FLAG = #{deleteFlag, jdbcType=INTEGER}
+		where ID = #{id, jdbcType=VARCHAR}
+	</update>
+
+</mapper>
