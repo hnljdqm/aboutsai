@@ -2,6 +2,7 @@
 spring:
   datasource:
     name: aboutsai-blog
+#    url: jdbc:mysql://127.0.0.1:3306/aboutsai
     url: jdbc:mysql://115.28.224.237:3306/aboutsai
     username: root
     password: 123456

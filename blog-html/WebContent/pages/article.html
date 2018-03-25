@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>邓宏誉的个人博客</title>
+  <script src="../static/js/common/common.js"></script>
+  <link rel="stylesheet" href="../static/css/layout.css">
+</head>
+
+<body class="article-info">
+  <!-- <header>
+    <h1>
+        <img src="../static/images/java.png" alt="" width="150"><br />
+        <a href="#">邓宏誉的个人博客</a>
+    </h1>
+    <ul>
+      <li><a href="../index.html">Blog</a></li>
+      <li><a href="./about.html">About</a></li>
+      <li><a href="https://github.com/hnljdqm">Github</a></li>
+    </ul>
+    <div><input type="text"><span></span></div>
+  </header> -->
+  <script>document.write(Blog.header());</script>
+  <main>    
+    <div class="article">
+      <script type="text/template" id="articleInfoTem">
+        <h1>{{result.title}}</h1>
+        <div class="explain">
+          <p><span>分类: {{result.catalogName}}</span> </p>
+		  <p><span>时间: {{result.publishTime}}</span></p>
+		  <p><span>点击量: {{result.hits}}</span></p>
+          <p class="mark">标签: &nbsp;&nbsp;{{result.articleLabel}}</p>
+          <p><span>文章性质: {{if result.articleType == 1}}
+            版权声明：本文为 邓宏誉 原创文章，可以随意转载，但必须在明确位置注明出处！！！
+            {{else if result.articleType == 2}}
+            	转载
+            {{else}}
+            	翻译
+            {{/if}}</span>
+            </p>
+        </div>
+        <div class="content">
+          {{#result.articleContent}} 
+        </div>      
+        <hr />
+        <!-- <div class="prev-next">
+          <p><a href="#">上一篇: sdfds</a></p>
+          <p><a href="#">下一篇: sdfds</a></p>
+        </div>   -->
+      </script>
+    </div>    
+  </main>
+  <script>document.write(Blog.footer());</script>
+  <script src="../static/js/thridplug/axios/axios.min.js"></script>
+  <script src="../static/js/thridplug/artTemplate/template.js"></script>
+  <script src="../static/js/blog/article.js"></script>
+</body>
+
+</html>

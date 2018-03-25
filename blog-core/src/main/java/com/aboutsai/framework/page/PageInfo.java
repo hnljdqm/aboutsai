@@ -28,7 +28,9 @@ public class PageInfo<T> implements Serializable {
     private boolean isFirstPage = false;
     //是否为最后一页
     private boolean isLastPage = false;
-
+    
+    //结果集返回给前端用
+    private List<T> results;
 
     public PageInfo() {
     }
@@ -139,4 +141,13 @@ public class PageInfo<T> implements Serializable {
         sb.append('}');
         return sb.toString();
     }
+
+	public List<T> getResults() {
+		return results;
+	}
+
+	public void setResults(List<T> results) {
+		this.results = results;
+	}
+    
 }

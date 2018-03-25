@@ -1,6 +1,8 @@
 package com.aboutsai.blog.entity;
 
 import com.aboutsai.framework.base.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 /**
@@ -20,6 +22,9 @@ public class ArticleInfo extends BaseEntity {
 	private String publishUserId;
 	private Integer hits;
 	private Integer isRecommend;
+	
+	//非持久化字段
+	private String articleContent;
 	
 	public Integer getArticleType() {
 		return this.articleType;
@@ -69,6 +74,7 @@ public class ArticleInfo extends BaseEntity {
 		this.publishStatus = publishStatus;
 	}
 
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	public Date getPublishTime() {
 		return this.publishTime;
 	}
@@ -100,4 +106,13 @@ public class ArticleInfo extends BaseEntity {
 	public void setIsRecommend(Integer isRecommend) {
 		this.isRecommend = isRecommend;
 	}
+
+	public String getArticleContent() {
+		return articleContent;
+	}
+
+	public void setArticleContent(String articleContent) {
+		this.articleContent = articleContent;
+	}
+	
 }

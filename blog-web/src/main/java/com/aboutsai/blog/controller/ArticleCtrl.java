@@ -1,40 +1,22 @@
 package com.aboutsai.blog.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.aboutsai.blog.common.controller.BaseCtrl;
-import com.aboutsai.blog.common.datadict.DataDictionary;
-import com.aboutsai.blog.dto.ArticleInfoDto;
-import com.aboutsai.blog.entity.ArticleContent;
 import com.aboutsai.blog.entity.ArticleInfo;
 import com.aboutsai.blog.entity.Catalog;
 import com.aboutsai.blog.service.ArticleService;
 import com.aboutsai.blog.service.CatalogService;
-import com.aboutsai.framework.util.DateUtil;
-import com.aboutsai.framework.util.FileUtil;
 
 @Controller
 @RequestMapping({ "/article" })
-public class ArticleCtrl extends BaseCtrl {
+public class ArticleCtrl {
 	// 图片上传支持类型W
 	private String IMG_TYPE = "gif,jpg,jpeg,png,bmp";
 	// 图片上传大小单位M
@@ -44,20 +26,8 @@ public class ArticleCtrl extends BaseCtrl {
 	@Resource
 	private CatalogService catalogService;
 
-	@RequestMapping({ "/index" })
-	public String index(Model model) {
-		ArticleInfoDto articleInfoDto = new ArticleInfoDto();
-		model.addAttribute("articleList", articleService.query(articleInfoDto));
-
-		Catalog catalog = new Catalog();
-		model.addAttribute("catalogList", catalogService.query(catalog));
-
-		super.setCurrentModule(model, DataDictionary.Module.article.name());
-		return "article/articleIndex";
-	}
-
 	@RequestMapping({ "/toAdd" })
-	public String toAdd(Model model, ArticleInfoDto articleInfoDto) {
+	public String toAdd(Model model, ArticleInfo articleInfo) {
 		Catalog catalog = new Catalog();
 		model.addAttribute("catalogList", this.catalogService.query(catalog));
 
@@ -65,30 +35,15 @@ public class ArticleCtrl extends BaseCtrl {
 	}
 
 	@RequestMapping({ "/add" })
-	public String add(Model model, ArticleInfoDto articleInfoDto) {
-		this.articleService.save(articleInfoDto);
+	public String add(Model model, ArticleInfo articleInfo) {
+		this.articleService.save(articleInfo);
 		return "redirect:/portal/index";
 	}
 
 	@RequestMapping({ "/publish" })
-	public String publish(Model model, ArticleInfoDto articleInfoDto) {
-		this.articleService.publish(articleInfoDto);
+	public String publish(Model model, ArticleInfo articleInfo) {
+		this.articleService.publish(articleInfo);
 		return "redirect:/portal/index";
-	}
-
-	@RequestMapping({ "/view/{id}" })
-	public String view(Model model, @PathVariable("id") String id) {
-		ArticleInfo articleInfo = this.articleService.getArticleInfoById(id);
-		ArticleContent articleContent = this.articleService.getArticleContentById(id);
-		this.articleService.updateHits(articleInfo);
-
-		ArticleInfoDto articleInfoDto = new ArticleInfoDto();
-		BeanUtils.copyProperties(articleInfo, articleInfoDto);
-		if (articleContent != null) {
-			articleInfoDto.setArticleContent(articleContent.getArticleContent());
-		}
-		model.addAttribute("articleInfoDto", articleInfoDto);
-		return "article/view";
 	}
 
 //	@RequestMapping({ "/fileUpload" })

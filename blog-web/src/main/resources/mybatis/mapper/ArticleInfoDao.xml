@@ -72,20 +72,4 @@
 		order by publish_time desc 
 	</select>
 	
-	<select id="getMaxNewArticles" resultMap="articleInfoMapper">
-		select * 
-		from blog_article_info
-		where DELETE_FLAG = 0
-		order by publish_time desc 
-		limit 10
-	</select>
-	
-	<select id="getRecommendArticles" resultMap="articleInfoMapper">
-		select * 
-		from blog_article_info
-		where DELETE_FLAG = 0 and IS_RECOMMEND = 1
-		order by publish_time desc 
-		limit 10
-	</select>
-
 </mapper>
