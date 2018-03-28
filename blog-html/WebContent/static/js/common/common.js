@@ -1,13 +1,17 @@
 var Blog = {
+//	appUrl : 'http://www.aboutsai.com/app',
+	appUrl : 'http://www.aboutsai.com:8080/app',
 	//js获取项目根路径，如： http://localhost:8080/blog-html/index.html
 	webRoot : function() {
 		// js webcontext
-		var webroot = document.location.href;
+		/*var webroot = document.location.href;
 		webroot = webroot.substring(webroot.indexOf('//') + 2, webroot.length);
 		webroot = webroot.substring(webroot.indexOf('/') + 1, webroot.length);
 		webroot = webroot.substring(0, webroot.indexOf('/'));
 		var rootpath = "/" + webroot;
-		return rootpath;
+		console.log(rootpath);
+		return rootpath;*/
+		return "";
 	},
 	//头部信息
 	header : function() {

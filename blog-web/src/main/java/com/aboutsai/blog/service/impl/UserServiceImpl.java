@@ -1,11 +1,13 @@
 package com.aboutsai.blog.service.impl;
 
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
+
+import com.aboutsai.blog.common.page.PageInfo;
 import com.aboutsai.blog.dao.UserDao;
 import com.aboutsai.blog.entity.User;
 import com.aboutsai.blog.service.UserService;
-import com.aboutsai.framework.page.PageInfo;
 import com.github.pagehelper.PageHelper;
 
 @Service

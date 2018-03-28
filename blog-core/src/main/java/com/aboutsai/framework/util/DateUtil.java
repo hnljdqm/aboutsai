@@ -134,66 +134,6 @@ public class DateUtil {
 	}
 
 	/**
-	 * 获取未来futureNo天的日期
-	 * 
-	 * @param futureNo
-	 * @return 返回:String[], 元素格式:yyyy-mm-dd
-	 */
-	public static String[] getDayInFuture(int futureNo) {
-		return getDayInFuture(new Date(), futureNo, DATE_FORMAT);
-	}
-
-	/**
-	 * 获取从date开始,未来futureNo天的日期
-	 * 
-	 * @param date
-	 * @param futureNo
-	 * @param format
-	 *            支持yyyy-MM-dd和mm-dd, 默认yyyy-MM-dd
-	 * @return 返回:String[], 元素格式:yyyy-MM-dd
-	 */
-	public static String[] getDayInFuture(Date date, int futureNo, String format) {
-		if (futureNo <= 0) {
-			return null;
-		}
-
-		Calendar now = Calendar.getInstance();
-		if (date != null) {
-			now.setTime(date);
-		}
-
-		int year = now.get(Calendar.YEAR);
-		int month = now.get(Calendar.MONTH) + 1;
-		int day = now.get(Calendar.DAY_OF_MONTH);
-		String monthStr = month < 10 ? "0" + month : month + "";
-		String dayStr = day < 10 ? "0" + day : day + "";
-
-		String[] dayArr = new String[futureNo];
-		if (StringUtil.isEqual(DATE_FORMAT_MM_DD, format)) {
-			dayArr[0] = monthStr + "-" + dayStr;
-		} else {
-			dayArr[0] = year + "-" + monthStr + "-" + dayStr;
-		}
-
-		for (int i = 1; i < futureNo; i++) {
-			now.add(Calendar.DAY_OF_MONTH, 1);
-			year = now.get(Calendar.YEAR);
-			month = now.get(Calendar.MONTH) + 1;
-			day = now.get(Calendar.DAY_OF_MONTH);
-			monthStr = month < 10 ? "0" + month : month + "";
-			dayStr = day < 10 ? "0" + day : day + "";
-
-			if (StringUtil.isEqual(DATE_FORMAT_MM_DD, format)) {
-				dayArr[i] = monthStr + "-" + dayStr;
-			} else {
-				dayArr[i] = year + "-" + monthStr + "-" + dayStr;
-			}
-		}
-
-		return dayArr;
-	}
-
-	/**
 	 * 获取当前年份
 	 * 
 	 * @return

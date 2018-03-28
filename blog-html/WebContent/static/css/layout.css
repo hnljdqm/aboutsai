@@ -151,16 +151,24 @@ main nav {
   width: 160px;
   margin-top: 18px;
 }
-
+main nav li {
+  cursor: pointer;
+  color: blue;
+}
+main nav span {
+  color: #aaaaaa;
+  font-weight: 400;
+  font-size: 15px;
+}
 main div.article-list {
   flex-grow: 1;
   /* border: 1px solid greenyellow; */
   padding: 40px;
 }
 .article-list ul {
-  margin: 0 10px 0 5px;
-  line-height: 40px;
-  padding: 0 40px;
+  /* margin: 0 10px 0 5px; */
+  /* line-height: 40px; */
+  padding: 0 25px;
 }
 .article-list li{
   display: flex;

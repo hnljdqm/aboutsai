@@ -1,14 +1,16 @@
 package com.aboutsai.blog.controller;
 
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.aboutsai.blog.common.page.PageInfo;
 import com.aboutsai.blog.entity.User;
 import com.aboutsai.blog.service.UserService;
-import com.aboutsai.framework.page.PageInfo;
 
 @Controller
 public class UserController {

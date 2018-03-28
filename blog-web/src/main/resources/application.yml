@@ -10,9 +10,9 @@ spring:
     enabled: false
 # 访问端口和上下文路径配置，默认port为80，context-path为空
 server:
-  port: 80
+  port: 8080
   servlet:
-    context-path: /
+    context-path: /app
     
 mybatis:
 #entity扫描的包名

@@ -1,8 +1,8 @@
 package com.aboutsai.blog.service;
 
+import com.aboutsai.blog.common.page.PageInfo;
 import com.aboutsai.blog.entity.ArticleContent;
 import com.aboutsai.blog.entity.ArticleInfo;
-import com.aboutsai.framework.page.PageInfo;
 
 public interface ArticleService {
 	public void save(ArticleInfo articleInfo);

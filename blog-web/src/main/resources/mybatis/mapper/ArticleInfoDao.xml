@@ -65,10 +65,17 @@
 		where ID = #{id, jdbcType=VARCHAR}
 	</update>
 	
-	<select id="query" resultMap="articleInfoMapper" useCache="true">
+	<select id="query" parameterType="com.aboutsai.blog.entity.ArticleInfo" 
+		resultMap="articleInfoMapper" useCache="true">
 		select * 
 		from blog_article_info
 		where DELETE_FLAG = 0
+		<if test="catalogId != null and catalogId != ''">
+			and CATALOG_ID = #{catalogId, jdbcType=VARCHAR}
+		</if>
+		<if test="title != null and title != ''">
+			and TITLE like CONCAT('%',#{title, jdbcType=VARCHAR},'%' ) 
+		</if>	
 		order by publish_time desc 
 	</select>
 	

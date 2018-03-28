@@ -1,4 +1,4 @@
-package com.aboutsai.framework.page;
+package com.aboutsai.blog.common.page;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
@@ -29,9 +29,6 @@ public class PageInfo<T> implements Serializable {
     //是否为最后一页
     private boolean isLastPage = false;
     
-    //结果集返回给前端用
-    private List<T> results;
-
     public PageInfo() {
     }
 
@@ -141,13 +138,4 @@ public class PageInfo<T> implements Serializable {
         sb.append('}');
         return sb.toString();
     }
-
-	public List<T> getResults() {
-		return results;
-	}
-
-	public void setResults(List<T> results) {
-		this.results = results;
-	}
-    
 }

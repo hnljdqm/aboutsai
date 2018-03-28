@@ -17,6 +17,7 @@
 		<result column="CODE" property="code" />
 		<result column="NAME" property="name" />
 		<result column="PARENT_ID" property="parentId" />
+		<result column="COUNTS" property="counts" />
 		<result column="CREATE_USER_ID" property="createUserId" />
 		<result column="CREATE_TIME" property="createTime" />
 		<result column="LAST_MODIFY_USER_ID" property="lastModifyUserId" />
@@ -31,16 +32,20 @@
 	</select>
 
 	<select id="query" parameterType="com.aboutsai.blog.entity.Catalog" resultMap="catalogMapper">
-		select *
-		from BLOG_CATALOG 
-		where DELETE_FLAG = 0
+		select cat.id,cat.code,cat.name,cat.PARENT_ID, ifnull(cat_count.COUNTS,0) as COUNTS 
+		from blog_catalog cat 
+		left join (
+			select catalog_id, count(*) COUNTS from blog_article_info group by catalog_id
+		) cat_count
+		on cat.ID = cat_count.catalog_id
+		where cat.DELETE_FLAG = 0
 		<if test="code != null and code != ''">
-			and CODE like CONCAT('%',#{code, jdbcType=VARCHAR},'%' ) 
+			and cat.CODE like CONCAT('%',#{code, jdbcType=VARCHAR},'%' ) 
 		</if>
 		<if test="name != null and name != ''">
-			and NAME like CONCAT('%',#{name, jdbcType=VARCHAR},'%' ) 
+			and cat.NAME like CONCAT('%',#{name, jdbcType=VARCHAR},'%' ) 
 		</if>
-		order by CODE
+		order by cat.CODE
 	</select>
 
 </mapper>

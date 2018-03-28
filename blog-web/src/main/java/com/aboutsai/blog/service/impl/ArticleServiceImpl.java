@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import com.aboutsai.blog.common.datadict.DataDictionary;
+import com.aboutsai.blog.common.page.PageInfo;
 import com.aboutsai.blog.dao.ArticleContentDao;
 import com.aboutsai.blog.dao.ArticleInfoDao;
 import com.aboutsai.blog.dao.CatalogDao;
@@ -15,7 +16,6 @@ import com.aboutsai.blog.entity.ArticleContent;
 import com.aboutsai.blog.entity.ArticleInfo;
 import com.aboutsai.blog.entity.Catalog;
 import com.aboutsai.blog.service.ArticleService;
-import com.aboutsai.framework.page.PageInfo;
 import com.aboutsai.framework.util.BOHelper;
 import com.aboutsai.framework.util.StringUtil;
 import com.aboutsai.framework.util.WebUtil;
@@ -34,8 +34,6 @@ public class ArticleServiceImpl implements ArticleService {
 	public PageInfo<ArticleInfo> query(ArticleInfo articleInfo, int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
 		PageInfo<ArticleInfo> page = new PageInfo<ArticleInfo>(articleInfoDao.query(articleInfo));
-		page.setResults(page.getList());
-		page.setList(null);
 		return page;
 	}
 	

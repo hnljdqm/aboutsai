@@ -13,6 +13,10 @@ public class Catalog extends BaseEntity {
 	private String code;
 	private String name;
 	private String parentId;
+	
+	//非持久化字段
+	// 分类的文章数
+	private Integer counts;
 
 	public String getCode() {
 		return this.code;
@@ -37,4 +41,13 @@ public class Catalog extends BaseEntity {
 	public void setParentId(String parentId) {
 		this.parentId = parentId;
 	}
+
+	public Integer getCounts() {
+		return counts;
+	}
+
+	public void setCounts(Integer counts) {
+		this.counts = counts;
+	}
+
 }

@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.aboutsai.blog.entity.User;
 import com.aboutsai.blog.service.UserService;
-import com.aboutsai.framework.page.PageInfo;
-import com.alibaba.fastjson.JSON;
 
 /**
  * mybatis分页查询测试类
@@ -27,9 +24,9 @@ public class UserTest {
 	
 	@Test
 	public void testQueryByPage() {
-		PageInfo<User> pageInfo = userService.query(new User(), 2, 2);
+		/*PageInfo<User> pageInfo = userService.query(new User(), 2, 2);
 		logger.debug("=========================\n" + pageInfo.toString());
-		logger.debug(JSON.toJSONString(pageInfo));
+		logger.debug(JSON.toJSONString(pageInfo));*/
 	}
 
 }

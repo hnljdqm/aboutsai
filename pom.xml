@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.aboutsai</groupId>
 	<artifactId>aboutsai-blog-springboot</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>aboutsai-blog-springboot</name>
 	<packaging>pom</packaging>
 	<modules>

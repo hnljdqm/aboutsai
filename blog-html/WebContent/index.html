@@ -18,8 +18,8 @@
     <nav>
       <ul>
         <script type="text/template" id="categoryTem">
-          {{ each results as value i}}
-          <li><a href="#" data-title-id="{{value.id}}">{{value.name}}</a></li>
+          {{ each list as value i}}
+          <li data-category-id="{{value.id}}">{{value.name}}<span>({{value.counts}})</span></li>
           {{/each}}
         </script>
       </ul>
@@ -27,7 +27,7 @@
     <div class="article article-list">
       <ul>
         <script type="text/template" id="articleListTem">
-          {{ each results as value i}}
+          {{ each list as value i}}
           <li>
             <a href="pages/article.html?a={{value.id}}">
               {{value.title}}</a>

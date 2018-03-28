@@ -17,10 +17,14 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
+		
+		<project.basedir>D:\aboutsai-github\aboutsai\blog-web\lib\</project.basedir>
 		<aboutsai.blog.version>1.0</aboutsai.blog.version>
 		<alibaba.druid.version>1.1.0</alibaba.druid.version>
 		<alibaba.fastjson.version>1.2.46</alibaba.fastjson.version>
 		<mybatis-ehcache.version>1.1.0</mybatis-ehcache.version>
+		<pagehelper-spring-boot.version>1.2.3</pagehelper-spring-boot.version>
+		<jsqlparser.version>1.1</jsqlparser.version>
 	</properties>
 
 	<prerequisites>
@@ -48,44 +52,4 @@
 		</repository>
 	</repositories>
 
-	<dependencyManagement>
-		<dependencies>
-			<!-- mybatis -->
-			<dependency>
-			    <groupId>com.github.pagehelper</groupId>
-			    <artifactId>pagehelper-spring-boot-starter</artifactId>
-			    <version>1.2.3</version>
-			</dependency>
-			<dependency>
-			    <groupId>com.github.jsqlparser</groupId>
-			    <artifactId>jsqlparser</artifactId>
-			    <version>1.1</version>
-			</dependency>
-			
-			<!-- druid -->
-			<dependency>
-				<groupId>com.alibaba</groupId>
-				<artifactId>druid</artifactId>
-				<version>${alibaba.druid.version}</version>
-			</dependency>
-			
-			<dependency>
-			    <groupId>com.alibaba</groupId>
-			    <artifactId>fastjson</artifactId>
-			    <version>${alibaba.fastjson.version}</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
-	<!-- 插件配置 -->
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-maven-plugin</artifactId>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
 </project>
