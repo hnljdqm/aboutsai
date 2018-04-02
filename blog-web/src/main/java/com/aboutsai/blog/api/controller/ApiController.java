@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.aboutsai.blog.api.dto.ExecResult;
 import com.aboutsai.blog.common.page.PageInfo;
 import com.aboutsai.blog.entity.ArticleContent;
 import com.aboutsai.blog.entity.ArticleInfo;
 import com.aboutsai.blog.entity.Catalog;
+import com.aboutsai.blog.entity.User;
 import com.aboutsai.blog.service.ArticleService;
 import com.aboutsai.blog.service.CatalogService;
+import com.aboutsai.blog.service.UserService;
 
 @Controller
 @RequestMapping("/api/blog")
@@ -28,6 +31,8 @@ public class ApiController {
 	private ArticleService articleService;
 	@Resource
 	private CatalogService catalogService;
+	@Resource
+	private UserService userService;
 
 	/**
 	 * 文章分类接口
@@ -89,5 +94,31 @@ public class ApiController {
 		articleInfo.setArticleContent(articleContent.getArticleContent());
 		articleService.updateHits(articleInfo);
 		return articleInfo;
+	}
+	
+	/**
+	 * 登录
+	 * @author hnljd
+	 * @date 2018年4月1日 下午3:46:46
+	 * @param userName
+	 * @param password
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@ResponseBody
+	public ExecResult login(@RequestParam("userName") String userName, 
+			@RequestParam("password") String password, HttpServletResponse response) {
+		// 指定允许其他域名访问
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		User user = userService.login(userName);
+		if (user == null) {
+			return new ExecResult(false, "101", "用户名或密码不存在");
+		}
+		//TODO 密码加密处理
+		if (!user.getPassword().equals(password)) {
+			return new ExecResult(false, "101", "用户名或密码不存在");
+		}
+		return new ExecResult(true, "200", "登录成功");
 	}
 }

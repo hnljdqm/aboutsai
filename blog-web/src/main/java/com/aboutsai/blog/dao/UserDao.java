@@ -28,4 +28,13 @@ public interface UserDao {
 	 * @return
 	 */
     public void insert(User user);
+    
+    /**
+     * 登录
+     * @author hnljd
+     * @date 2018年4月1日 下午3:41:17
+     * @param userName
+     * @return
+     */
+    public User login(String userName);
 }

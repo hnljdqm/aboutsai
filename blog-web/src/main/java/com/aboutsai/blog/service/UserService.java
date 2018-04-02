@@ -26,4 +26,13 @@ public interface UserService {
 	 */
 	PageInfo<User> query(User user, int pageNum, int pageSize);
 	
+	/**
+     * 登录
+     * @author hnljd
+     * @date 2018年4月1日 下午3:41:17
+     * @param userName
+     * @return
+     */
+    public User login(String userName);
+	
 }

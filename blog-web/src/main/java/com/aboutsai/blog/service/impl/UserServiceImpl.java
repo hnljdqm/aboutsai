@@ -36,4 +36,15 @@ public class UserServiceImpl implements UserService {
 		return new PageInfo<User>(userDao.query(user));
 	}
 	
+	/**
+     * 登录
+     * @author hnljd
+     * @date 2018年4月1日 下午3:41:17
+     * @param userName
+     * @return
+     */
+    public User login(String userName) {
+    	return userDao.login(userName);
+    }
+	
 }

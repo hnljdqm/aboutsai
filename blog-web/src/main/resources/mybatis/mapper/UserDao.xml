@@ -6,23 +6,24 @@
 	    <id column="ID" property="id" />
 	    <result column="NAME" property="name" />
 	    <result column="EMAIL" property="email" />
+	    <result column="PASSWORD" property="password" />
 	</resultMap>
 
 	<sql id="Base_Column_List" >
-		ID, NAME, EMAIL
+		ID, NAME, EMAIL, PASSWORD
 	</sql>
 
   	<select id="findById" parameterType="string" resultMap="userMapper">
 		select
 		<include refid="Base_Column_List" />
-		from SYS_USERS
+		from blog_users
 		where ID = #{id,jdbcType=VARCHAR}
   	</select>
   	
   	<select id="query" parameterType="com.aboutsai.blog.entity.User" resultMap="userMapper">
   		select
 		<include refid="Base_Column_List" />
-		from SYS_USERS
+		from blog_users
 		<where>
 			<if test="name != null and name != ''">
 				and NAME like  '%' || #{name} || '%'
@@ -34,12 +35,19 @@
   	</select>
   	
   	<insert id="insert" parameterType="com.aboutsai.blog.entity.User">
-  		insert into SYS_USERS(ID, NAME, EMAIL) 
+  		insert into blog_users(ID, NAME, EMAIL) 
   		values (
   			#{id, jdbcType=VARCHAR}, 
   			#{name, jdbcType=VARCHAR}, 
   			#{email, jdbcType=VARCHAR}
   		)
   	</insert>
+  	
+  	<select id="login" parameterType="string" resultMap="userMapper">
+		select
+		<include refid="Base_Column_List" />
+		from blog_users
+		where NAME = #{name, jdbcType=VARCHAR}
+  	</select>
 
 </mapper>

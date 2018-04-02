@@ -1,6 +1,6 @@
 var Blog = {
-//	appUrl : 'http://www.aboutsai.com/app',
-	appUrl : 'http://www.aboutsai.com:8080/app',
+	//appUrl : 'http://www.aboutsai.com:8080/app',
+	appUrl : 'localhost:8080/blog-web',
 	//js获取项目根路径，如： http://localhost:8080/blog-html/index.html
 	webRoot : function() {
 		// js webcontext

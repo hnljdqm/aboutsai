@@ -12,35 +12,23 @@
 	</parent>
 	<artifactId>blog-web</artifactId>
 	<name>blog-web</name>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<dependencies>
-		<!-- blog-core -->
-		<dependency>
-			<groupId>com.aboutsai</groupId>
-			<artifactId>blog-core</artifactId>
-			<version>${aboutsai.blog.version}</version>
-			<scope>system</scope>
-    		<systemPath>${basedir}/src/lib/blog-core-1.0.jar</systemPath>
-		</dependency>
-		
 		<!-- spring-boot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<!-- 移除嵌入式tomcat插件 -->
-		    <!-- <exclusions>
-		        <exclusion>
-		            <groupId>org.springframework.boot</groupId>
-		            <artifactId>spring-boot-starter-tomcat</artifactId>
-		        </exclusion>
-		    </exclusions> -->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>  
+            <groupId>org.springframework.boot</groupId>  
+            <artifactId>spring-boot-starter-aop</artifactId>  
+        </dependency> 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -91,30 +79,28 @@
 		</dependency>
 		<!-- ehcache + mybatis end -->
 		
-		<!--对jsp的支持-->  
-		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		
-		<!-- servlet 依赖. -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-		</dependency>
+		<!--jsp支持-->
+	    <!-- servlet 依赖. -->
+	    <dependency>
+	      <groupId>javax.servlet</groupId>
+	      <artifactId>javax.servlet-api</artifactId>
+	      <scope>provided</scope>
+	    </dependency>
+	    <dependency>
+	      <groupId>javax.servlet</groupId>
+	      <artifactId>jstl</artifactId>
+	    </dependency>
+	    
+	    <!-- tomcat 的支持.-->
+	    <dependency>
+	      <groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-starter-tomcat</artifactId>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.apache.tomcat.embed</groupId>
+	      <artifactId>tomcat-embed-jasper</artifactId>
+	      <scope>provided</scope>
+	    </dependency>
 		
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -125,6 +111,20 @@
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
 		</dependency>
+		
+		<dependency>
+	  		<groupId>com.aboutsai</groupId>
+			<artifactId>blog-core</artifactId>
+	  		<version>${aboutsai.blog.version}</version>
+	  	</dependency>
+	  	<dependency>
+			<groupId>com.aboutsai</groupId>
+			<artifactId>blog-core</artifactId>
+	  		<version>${aboutsai.blog.version}</version>
+			<classifier>tests</classifier>
+			<scope>test</scope>
+		</dependency>
+		
 	</dependencies>
 	
 	<build>
@@ -139,6 +139,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<skip>true</skip>
+					<useSystemClassLoader>false</useSystemClassLoader>
 				</configuration>
 			</plugin>
 			
@@ -149,7 +150,7 @@
 	                <target>1.8</target>  
 	                <encoding>UTF-8</encoding>  
 	                <compilerArguments>  
-	                    <!-- 打包本地jar包 -->
+	                  <!--   打包本地jar包 -->
 	                    <extdirs>${project.basedir}/lib</extdirs>  
 	                </compilerArguments>  
 	            </configuration>  
@@ -165,7 +166,7 @@
 					<warSourceIncludes>**</warSourceIncludes>
 					<webResources>
 						<webResource>
-							<directory>lib</directory>
+							<directory>src/lib</directory>
 		                    <targetPath>WEB-INF/lib/</targetPath>
 		                    <includes>
 		                        <include>**/*.jar</include>
@@ -177,7 +178,28 @@
 		</plugins>
 		
 		<resources>
-			<resource>
+	        <resource>
+	            <directory>src/main/resources</directory>   
+	            <excludes>  
+	            	<exclude>static/**/fonts/**</exclude>
+	            </excludes>
+	            <filtering>true</filtering>        
+	        </resource>
+	        <resource>
+	            <directory>src/main/resources</directory>   
+	            <includes>  
+					<include>static/**/fonts/**</include>
+	            </includes>
+	            <filtering>false</filtering>        
+	        </resource>
+	        <resource>
+		        <directory>src/main/java</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+			
+			<!-- <resource>
 				<directory>src/lib</directory>
 				<targetPath>BOOT-INF/lib/</targetPath>
 				<includes>
@@ -187,7 +209,9 @@
 			<resource>
 				<directory>src/main/resources</directory>
 				<targetPath>BOOT-INF/classes/</targetPath>
-			</resource>
-		</resources>
+			</resource> -->
+    	</resources>
+
+	    <finalName>blog_web</finalName>
 	</build>
 </project>

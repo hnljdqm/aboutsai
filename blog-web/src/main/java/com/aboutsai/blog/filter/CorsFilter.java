@@ -11,7 +11,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebFilter(urlPatterns = "/api/*")
+//@WebFilter(urlPatterns = "/api/*")
 public class CorsFilter implements Filter {
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -21,11 +21,11 @@ public class CorsFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
 			throws IOException, ServletException {
-		HttpServletRequest request = (HttpServletRequest) servletRequest;
-		HttpServletResponse response = (HttpServletResponse) servletResponse;
-		System.out.println("====>doFilter " + request.getRequestURI());
-		// 指定允许其他域名访问
-		response.setHeader("Access-Control-Allow-Origin", "*");
+//		HttpServletRequest request = (HttpServletRequest) servletRequest;
+//		HttpServletResponse response = (HttpServletResponse) servletResponse;
+//		System.out.println("====>doFilter " + request.getRequestURI());
+//		// 指定允许其他域名访问
+//		response.setHeader("Access-Control-Allow-Origin", "*");
 		filterChain.doFilter(servletRequest, servletResponse);
 	}
 
