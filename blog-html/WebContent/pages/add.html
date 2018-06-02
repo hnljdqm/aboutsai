@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>邓宏誉的个人博客</title>
+  <script src="../static/js/common/common.js"></script>
+  <link rel="stylesheet" href="../static/css/layout.css">
+  <link rel="stylesheet" href="../static/js/thridplug/ckeditor/contents.css">
+  <style>
+      main {
+          display: block;
+          width: 80%;
+          margin: 0 auto;
+      }
+      input,select {
+          height: 36px;
+          margin: 5px 0;
+          border-radius: 5px;
+          border:1px solid #cccccc;
+          padding-left: 5px;
+          width: 200px;
+          margin-left: 5px;
+      }
+      button {
+          height: 36px;
+      }
+      .befrom {
+          width:90%;
+          /* display: block; */
+      }
+  </style>
+</head>
+
+<body class="article-info">
+  <script>document.write(Blog.header());</script>
+
+  <main>    
+    <div>
+        <div>标题 <input type="text" placeholder="Name your file..." id="artName">  </div>
+        <div>
+            <textarea name="article" ></textarea>
+        </div>
+        
+        <label>分类</label>
+        <select name=""  id="select-classify">
+            <script type="text/template" id="categoryTem">
+                {{ each list as value i}}               
+                <option value="{{value.name}}">{{value.name}}</option>
+                {{/each}}
+            </script>            
+        </select> <br />       
+        <label>来源</label>
+        <select name="" id="resource">
+            <option value="转载">转载</option>
+            <option value="原创" selected>原创</option>
+            <option value="翻译">翻译</option>
+        </select> <br />
+        <label>推荐</label>
+        <select name="" id="tuijian">
+            <option value="1"  selected>是</option>
+            <option value="0">否</option>
+        </select> <br />
+        <label>标签</label>
+        <input type="text" class="befrom" id="articleLabel"> <br />
+        <button class="createBtn">Create new file</button>
+        <button>Cancel</button>
+    </div>    
+
+  </main>
+  <script>document.write(Blog.footer());</script>
+  <script src="../static/js/thridplug/axios/axios.min.js"></script>
+  <script src="../static/js/thridplug/artTemplate/template.js"></script>  
+  <script src="../static/js/thridplug/ckeditor/ckeditor.js"></script>
+  <script src="../static/js/blog/add.js"></script>
+</body>
+
+</html>
