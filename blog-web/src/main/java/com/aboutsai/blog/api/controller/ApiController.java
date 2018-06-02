@@ -8,13 +8,16 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.aboutsai.blog.api.dto.ExecResult;
+import com.aboutsai.blog.api.dto.SysUserDto;
 import com.aboutsai.blog.common.page.PageInfo;
 import com.aboutsai.blog.entity.ArticleContent;
 import com.aboutsai.blog.entity.ArticleInfo;
@@ -23,7 +26,13 @@ import com.aboutsai.blog.entity.User;
 import com.aboutsai.blog.service.ArticleService;
 import com.aboutsai.blog.service.CatalogService;
 import com.aboutsai.blog.service.UserService;
+import com.github.pagehelper.util.StringUtil;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+
+@Api(value="ApiController测试类上的注解")
 @Controller
 @RequestMapping("/api/blog")
 public class ApiController {
@@ -84,6 +93,8 @@ public class ApiController {
 	 * @param id
 	 * @return
 	 */
+	@ApiOperation(value="文章详情接口", notes="根据url的id来查看文章详情接口")
+	@ApiImplicitParam(name = "id", value = "文章ID", required = true, dataType = "String", paramType = "path")
 	@RequestMapping(value = "/articles/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ArticleInfo articles(@PathVariable("id") String id,HttpServletResponse response) {
@@ -107,18 +118,41 @@ public class ApiController {
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public ExecResult login(@RequestParam("userName") String userName, 
-			@RequestParam("password") String password, HttpServletResponse response) {
+	public ExecResult login(@RequestBody SysUserDto userDto, HttpServletResponse response) {
 		// 指定允许其他域名访问
 		response.setHeader("Access-Control-Allow-Origin", "*");
-		User user = userService.login(userName);
+		User user = userService.login(userDto.getUserName());
 		if (user == null) {
 			return new ExecResult(false, "101", "用户名或密码不存在");
 		}
 		//TODO 密码加密处理
-		if (!user.getPassword().equals(password)) {
+		if (!user.getPassword().equals(userDto.getPassword())) {
 			return new ExecResult(false, "101", "用户名或密码不存在");
 		}
 		return new ExecResult(true, "200", "登录成功");
+	}
+	
+	/**
+	 * 发表文章接口
+	 * @author hnljd
+	 * @date 2018年4月3日 下午10:28:08
+	 * @param model
+	 * @param articleInfo
+	 * @return
+	 */
+	@RequestMapping(value = "/articles", method = RequestMethod.POST)
+	@ResponseBody
+	public ExecResult articles(Model model,@RequestBody ArticleInfo articleInfo) {
+		if (StringUtil.isEmpty(articleInfo.getTitle())) {
+			return new ExecResult(true, "201", "标题不能为空");
+		}
+		if (StringUtil.isEmpty(articleInfo.getArticleContent())) {
+			return new ExecResult(true, "202", "内容不能为空");
+		}
+		if (StringUtil.isEmpty(articleInfo.getCatalogId())) {
+			return new ExecResult(true, "202", "文章分类不能为空");
+		}
+		this.articleService.publish(articleInfo);
+		return new ExecResult(true, "200", "发表文章成功");
 	}
 }
