@@ -12,19 +12,19 @@ import java.util.Date;
  */
 @SuppressWarnings("serial")
 public class ArticleInfo extends BaseEntity {
-	private Integer articleType;
-	private String title;
-	private String articleLabel;
-	private String catalogId;
+	private Integer articleType; //文章来源,1:原创, 2:转载, 3:翻译
+	private String title; //主题
+	private String articleLabel; //文章标签
+	private String catalogId; //文章分类Id
 	private String catalogName;
 	private Integer publishStatus;
 	private Date publishTime;
 	private String publishUserId;
 	private Integer hits;
-	private Integer isRecommend;
+	private Integer isRecommend; //推荐文章，0：不推荐，1：推荐
 	
 	//非持久化字段
-	private String articleContent;
+	private String articleContent; //内容
 	
 	public Integer getArticleType() {
 		return this.articleType;

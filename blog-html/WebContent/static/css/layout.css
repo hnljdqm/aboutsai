@@ -36,12 +36,46 @@ header {
   text-align: center;
   position: relative;
 }
-header div{
+header button.login {
+  display: block;
+  width: 100px;
+  height: 40px;
+  /* opacity: 0; */
+}
+
+header button:hover {
+  cursor: pointer;
+}
+header div.search{
   position: absolute;
   bottom: 30px;
   right: 0px;
 }
-
+header div.dialog {
+  width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px #ccc;
+  padding: 20px;
+  margin-top: 5px;
+  position: absolute;
+  z-index: 2;
+  background-color: #fff;
+  padding-top: 8px;
+  /* padding:0 0 10px 0; */
+  /* left: 60px; */
+  display: none;
+}
+header div.dialog input, header div.dialog button {
+  margin: 20px 0 0 10px;
+  padding:5px 10px;
+}
+header button.login {
+  background-color: #fff;
+  border:1px solid #ddd;
+  height: 30px;
+  border-radius: 5px;
+}
 header ul {
   
   /* margin: 0 auto; */
@@ -61,7 +95,7 @@ header ul li:first-child {
   flex-grow: 1;
   text-align: right;
 } */
-header input {
+header div.search input {
   width: 200px;
   height: 30px;
   /* border-radius: 5px; */

@@ -4,9 +4,7 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <dependent-module archiveName="blog-core-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blog-core/blog-core">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <property name="java-output-path" value="/blog-web/target/classes"/>
         <property name="component.inclusion.patterns" value="**"/>
         <property name="component.exclusion.patterns"/>
