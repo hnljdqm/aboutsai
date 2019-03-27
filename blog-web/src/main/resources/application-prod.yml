@@ -1,10 +1,8 @@
 #生产配置
-spring:
-  datasource:
-    name: aboutsai-blog
-    url: jdbc:mysql://localhost:3306/test
+#华为云服务器mysql版本
+    url: jdbc:mysql://127.0.0.1:3306/aboutsai
     username: root
-    password: 123456
+    password: 1234qwer
     driver-class-name: com.mysql.jdbc.Driver
     # 使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource

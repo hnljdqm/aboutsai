@@ -11,64 +11,204 @@
 		<relativePath>../blog-parent</relativePath>
 	</parent>
 	<artifactId>blog-web</artifactId>
+	<version>${aboutsai.blog.version}</version>
+	<packaging>jar</packaging>
 	<name>blog-web</name>
-	<packaging>war</packaging>
-	<properties>
-		<base.path>D:/aboutsai-github/aboutsai/blog-core/target/</base.path>
-	</properties>
 
 	<dependencies>
-		<!-- spring-boot -->
+	
+	<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		
+		<!-- 腾讯云新加jar开始 -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20140107</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.1.27</version>
+		</dependency>
+		<!-- 腾讯云新加jar截止 -->
+		
+		<dependency>
+			<groupId>com.aboutsai</groupId>
+			<artifactId>blog-core</artifactId>
+			<version>${aboutsai.blog.version}</version>
+		</dependency>
+		
+	  	<dependency>
+			<groupId>com.aboutsai</groupId>
+			<artifactId>blog-core</artifactId>
+			<classifier>tests</classifier>
+			<scope>test</scope>
+			<version>${aboutsai.blog.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>${mybatis-spring-boot}</version>
+		</dependency>
+		
+		<!-- <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency> -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>  
-            <groupId>org.springframework.boot</groupId>  
-            <artifactId>spring-boot-starter-aop</artifactId>  
-        </dependency> 
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
 		</dependency>
-	
-		<!-- mybatis -->
+		
 		<dependency>
-		    <groupId>com.github.pagehelper</groupId>
-		    <artifactId>pagehelper-spring-boot-starter</artifactId>
-		    <version>${pagehelper-spring-boot.version}</version>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.7.0</version>
 		</dependency>
+		
 		<dependency>
-		    <groupId>com.github.jsqlparser</groupId>
-		    <artifactId>jsqlparser</artifactId>
-		    <version>${jsqlparser.version}</version>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+		
+		<!-- coyote -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-coyote</artifactId>
+			<version>${tomcat.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.tomcat</groupId>
+					<artifactId>tomcat-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.tomcat</groupId>
+					<artifactId>tomcat-servlet-api</artifactId>
+				</exclusion>
+			</exclusions>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
 		</dependency>
 		
 		<!-- mysql -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+
+		<!-- commons log -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+		</dependency>
+
+		<!-- sftp 文件服务器依赖jar包 -->
+		<dependency>
+			<groupId>com.jcraft</groupId>
+			<artifactId>jsch</artifactId>
+		</dependency>
+
+		<!-- aop -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.im4java</groupId>
+			<artifactId>im4java</artifactId>
+			<version>1.4.0</version>
 		</dependency>
 		
-		<!-- druid -->
+		<!-- 微信解密使用 -->
 		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>${alibaba.druid.version}</version>
+		    <groupId>org.bouncycastle</groupId>
+		    <artifactId>bcprov-jdk15on</artifactId>
+		    <version>1.59</version>
 		</dependency>
 		
 		<dependency>
-		    <groupId>com.alibaba</groupId>
-		    <artifactId>fastjson</artifactId>
-		    <version>${alibaba.fastjson.version}</version>
+		    <groupId>commons-codec</groupId>
+		    <artifactId>commons-codec</artifactId>
 		</dependency>
+		
+		<!-- redis -->
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        
+		<dependency>
+		    <groupId>commons-httpclient</groupId>
+		    <artifactId>commons-httpclient</artifactId>
+		    <version>3.1</version>
+		</dependency>
+		
+		<!-- mybatis分页 -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.github.jsqlparser</groupId>
+			<artifactId>jsqlparser</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		
+		
+		
+		<dependency>  
+            <groupId>org.springframework.boot</groupId>  
+            <artifactId>spring-boot-starter-aop</artifactId>  
+        </dependency> 
 		
 		<!-- ehcache + mybatis begin -->
 		<dependency>
@@ -94,11 +234,6 @@
 	      <artifactId>jstl</artifactId>
 	    </dependency>
 	    
-	    <!-- tomcat 的支持.-->
-	    <dependency>
-	      <groupId>org.springframework.boot</groupId>
-	      <artifactId>spring-boot-starter-tomcat</artifactId>
-	    </dependency>
 	    <dependency>
 	      <groupId>org.apache.tomcat.embed</groupId>
 	      <artifactId>tomcat-embed-jasper</artifactId>
@@ -116,34 +251,6 @@
 		</dependency>
 		
 		<dependency>
-	  		<groupId>com.aboutsai</groupId>
-			<artifactId>blog-core</artifactId>
-	  		<version>${aboutsai.blog.version}</version>
-	  		<scope>system</scope>
-    		<systemPath>${base.path}/blog-core-1.0.jar</systemPath>
-	  	</dependency>
-	  	<!-- <dependency>
-			<groupId>com.aboutsai</groupId>
-			<artifactId>blog-core</artifactId>
-	  		<version>${aboutsai.blog.version}</version>
-			<classifier>tests</classifier>
-			<scope>test</scope>
-		</dependency> -->
-		
-		
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>2.8.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>2.8.0</version>
-		</dependency>
-		
-		<dependency>
 		    <groupId>redis.clients</groupId>
 		    <artifactId>jedis</artifactId>
 		    <type>jar</type>
@@ -157,8 +264,31 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+			        <encoding>UTF-8</encoding>
+			        <!-- 过滤后缀为pem、pfx的证书文件 -->
+			       <nonFilteredFileExtensions>
+			          <nonFilteredFileExtension>pem</nonFilteredFileExtension>
+			          <nonFilteredFileExtension>pfx</nonFilteredFileExtension>
+			          <nonFilteredFileExtension>p12</nonFilteredFileExtension>
+			          <nonFilteredFileExtension>eot</nonFilteredFileExtension>
+			          <nonFilteredFileExtension>svg</nonFilteredFileExtension>
+			          <nonFilteredFileExtension>ttf</nonFilteredFileExtension>
+			          <nonFilteredFileExtension>woff</nonFilteredFileExtension>
+			          <nonFilteredFileExtension>css</nonFilteredFileExtension>
+			          <nonFilteredFileExtension>js</nonFilteredFileExtension>
+			          <nonFilteredFileExtension>html</nonFilteredFileExtension>
+			          <nonFilteredFileExtension>ico</nonFilteredFileExtension>
+			       </nonFilteredFileExtensions>
+			    </configuration>
 			</plugin>
-			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -167,76 +297,36 @@
 					<useSystemClassLoader>false</useSystemClassLoader>
 				</configuration>
 			</plugin>
-			
-			<plugin>  
-	            <artifactId>maven-compiler-plugin</artifactId>  
-	            <configuration>  
-	                <source>1.8</source>  
-	                <target>1.8</target>  
-	                <encoding>UTF-8</encoding>  
-	                <compilerArguments>  
-	                  <!--   打包本地jar包 -->
-	                    <extdirs>${project.basedir}/lib</extdirs>  
-	                </compilerArguments>  
-	            </configuration>  
-	        </plugin>
-			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
+				    <warName>blog_web</warName>
 					<useCache>false</useCache>
 					<attachClasses>true</attachClasses>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<warSourceIncludes>**</warSourceIncludes>
-					<webResources>
-						<webResource>
-							<directory>src/lib</directory>
-		                    <targetPath>WEB-INF/lib/</targetPath>
-		                    <includes>
-		                        <include>**/*.jar</include>
-		                    </includes>
-						</webResource>
-					</webResources>
+					<packagingExcludes>WEB-INF/web.xml</packagingExcludes>
 				</configuration>
 			</plugin>
 		</plugins>
-		
+
 		<resources>
-	        <resource>
-	            <directory>src/main/resources</directory>   
-	            <excludes>  
-	            	<exclude>static/**/fonts/**</exclude>
-	            </excludes>
-	            <filtering>true</filtering>        
-	        </resource>
-	        <resource>
-	            <directory>src/main/resources</directory>   
-	            <includes>  
-					<include>static/**/fonts/**</include>
-	            </includes>
-	            <filtering>false</filtering>        
-	        </resource>
-	        <resource>
-		        <directory>src/main/java</directory>
+			<resource>
+				<directory>src/main/resources</directory>
+				 <includes>
+			       <include>**.*</include>
+			       <include>**/**.*</include>
+			    </includes>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/java</directory>
 				<excludes>
 					<exclude>**/*.java</exclude>
 				</excludes>
 			</resource>
-			
-			<!-- <resource>
-				<directory>src/lib</directory>
-				<targetPath>BOOT-INF/lib/</targetPath>
-				<includes>
-					<include>**/*.jar</include>
-				</includes>
-			</resource>
-			<resource>
-				<directory>src/main/resources</directory>
-				<targetPath>BOOT-INF/classes/</targetPath>
-			</resource> -->
-    	</resources>
+		</resources>
 
-	    <finalName>blog_web</finalName>
+		<finalName>blog_web</finalName>
 	</build>
 </project>

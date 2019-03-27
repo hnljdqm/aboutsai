@@ -10,29 +10,28 @@ spring:
     enabled: false
 # 访问端口和上下文路径配置，默认port为80，context-path为空
 server:
-  port: 8080
+  port: 82
   servlet:
-    context-path: /app
+    context-path: /blog-web
     
 mybatis:
-#entity扫描的包名
-  typeAliasesPackage: com.aboutsai.blog.entity
 #Mapper.xml所在的位置,mapperLocations指的路径是src/main/resources
   mapperLocations: classpath*:/mybatis/mapper/**/*.xml
+  configLocation: classpath:conf/mybatis/mybatis-config.xml
 
-#pagehelper分页插件配置
+#分页插件
 pagehelper:
-  helperDialect: mysql
-  reasonable: true
-  supportMethodsArguments: true
-  params: countSql
+   helperDialect: mysql
+   reasonable: true
+   supportMethodsArguments: true
+   params: count=countSql
 
 #日志配置
 logging:
   # 显示SQL
   level:
     com:
-      aboutsai: debug  
+      aboutsai: info  
     org:
       springframework:
         web: info
