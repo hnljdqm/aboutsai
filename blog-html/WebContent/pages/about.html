@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>邓宏誉的个人博客</title>
   <script src="../static/js/common/common.js"></script>
+  <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
   <link rel="stylesheet" href="../static/css/layout.css">
 </head>
 
@@ -25,7 +26,7 @@
         <p>从事于JAVA WEB开发，</p> 
         <p>现就职于ELEMENTSPEED.COM</p>
         <p>关于我的更多信息，还待完善</p>
-        <p></p>
+        <p><a href="#" onclick="toMini()">跳转小程序</a></p>
       </div>      
       <hr />
       <!-- <div class="prev-next">
@@ -37,5 +38,11 @@
   </main>
   <script>document.write(Blog.footer());</script>
 </body>
+  <script>
+  function toMini() {
+	  console.log(1111);
+	  wx.miniProgram.navigateTo({url: '/pages/article/articleDetail?phone=18915772821&app_id=201810197064'})
+  }
+  </script>
 
 </html>

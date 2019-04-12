@@ -5,9 +5,12 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
+<<<<<<< HEAD
         <dependent-module archiveName="blog-core-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blog-core/blog-core">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+=======
+>>>>>>> branch 'master' of https://github.com/hnljdqm/aboutsai.git
         <property name="java-output-path" value="/blog-web/target/classes"/>
         <property name="component.inclusion.patterns" value="**"/>
         <property name="component.exclusion.patterns"/>

@@ -1,6 +1,6 @@
 var Blog = {
 //	appUrl : 'http://localhost:8080/blog_web',
-	appUrl : 'http://114.116.12.224/blog-web',
+	appUrl : 'https://www.aboutsai.com/blog-web',
 //	appUrl : 'http://www.aboutsai.com:8080/app',
 	//js获取项目根路径，如： http://localhost:8080/blog-html/index.html
 	webRoot : function() {
@@ -22,8 +22,8 @@ var Blog = {
 		var webRoot = Blog.webRoot();
 		var header = '';
 		header += '<header>';
-			header += '<button class="login">login</button>';
-			header += '<div class="dialog">username:<input type="text"><br />password:<input type="password"><br /><button class="confirm">确定</button><button class="cancel">取消</button></div>'
+//			header += '<button class="login">login</button>';
+//			header += '<div class="dialog">username:<input type="text"><br />password:<input type="password"><br /><button class="confirm">确定</button><button class="cancel">取消</button></div>'
 			header += '<h1>';
 				header += '<img src="'+webRoot+'/static/images/java.png" alt="" width="150"><br />';
 				header += '<a href="'+webRoot+'/index.html">邓宏誉的个人博客</a>';
@@ -41,38 +41,38 @@ var Blog = {
 	footer : function() {
 		var footer = '';
 		footer += '<footer>';
-			footer += '<p>COPYRIGHT © ABOUTSAI.COM 苏ICP备16027294号-1</p>';
+			footer += '<p>COPYRIGHT © ABOUTSAI.COM <a href="http://jscainfo.miitbeian.gov.cn" target="_blank" class="ml14">苏ICP备19006764号</a></p>';
 		footer += '</footer>';
 		return footer;
 	}
 }
 
 // 点击登陆
-var loginBtn = document.querySelector('header button.login');
-var dialog = document.querySelector('header div.dialog');
-var cancel = document.querySelector('header .dialog button.cancel');
-var confirm = document.querySelector('header .dialog button.confirm');
-var username = document.querySelectorAll('header input')[0];
-var password = document.querySelectorAll('header input')[1];
+//var loginBtn = document.querySelector('header button.login');
+//var dialog = document.querySelector('header div.dialog');
+//var cancel = document.querySelector('header .dialog button.cancel');
+//var confirm = document.querySelector('header .dialog button.confirm');
+//var username = document.querySelectorAll('header input')[0];
+//var password = document.querySelectorAll('header input')[1];
 
-loginBtn.onclick = function (){
-	dialog.style.display = 'block';	
-};
-cancel.onclick = function (){
-	dialog.style.display = 'none';
-};
-confirm.onclick = function (){
-	axios.post(Blog.appUrl + '/api/blog/login', {
-		userName: username.value,
-		password: password.value
-	  })
-	.then(function (response) {
-		if(response.data.success){
-			var webRoot = Blog.webRoot();
-			console.log(webRoot)
-			location.href = "./pages/backPage.html"
-		}else{
-			dialog.style.display = 'none';
-		}
-	})
-}
+//loginBtn.onclick = function (){
+//	dialog.style.display = 'block';	
+//};
+//cancel.onclick = function (){
+//	dialog.style.display = 'none';
+//};
+//confirm.onclick = function (){
+//	axios.post(Blog.appUrl + '/api/blog/login', {
+//		userName: username.value,
+//		password: password.value
+//	  })
+//	.then(function (response) {
+//		if(response.data.success){
+//			var webRoot = Blog.webRoot();
+//			console.log(webRoot)
+//			location.href = "./pages/backPage.html"
+//		}else{
+//			dialog.style.display = 'none';
+//		}
+//	})
+//}

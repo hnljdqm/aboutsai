@@ -1,6 +1,6 @@
 #生产配置
 #华为云服务器mysql版本
-    url: jdbc:mysql://127.0.0.1:3306/aboutsai
+    url: jdbc:mysql://114.116.12.224:3306/aboutsai
     username: root
     password: 1234qwer
     driver-class-name: com.mysql.jdbc.Driver
