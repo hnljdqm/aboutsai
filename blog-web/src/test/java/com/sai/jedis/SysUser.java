@@ -2,6 +2,11 @@ package com.sai.jedis;
 
 import java.io.Serializable;
 
+/**
+ * 测试
+ * @author hnljd
+ *
+ */
 public class SysUser implements Serializable {
 	private String userName;
 	private String passWord;
